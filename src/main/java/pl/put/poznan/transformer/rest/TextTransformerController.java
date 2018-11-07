@@ -23,7 +23,7 @@ public class TextTransformerController {
 
         // do the transformation, you should run your logic here, below just a silly example
         TextTransformer transformer = new TextTransformer(transforms);
-        return transformer.transform(text);
+        return transformer.transformUpper(text);
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
@@ -36,7 +36,7 @@ public class TextTransformerController {
 
         // do the transformation, you should run your logic here, below just a silly example
         TextTransformer transformer = new TextTransformer(transforms);
-        return transformer.transform(text);
+        return transformer.transformUpper(text);
     }
 
 

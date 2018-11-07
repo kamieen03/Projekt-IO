@@ -9,6 +9,5 @@ import pl.put.poznan.transformer.logic.TextTransformer;
 public class TextTransformerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TextTransformerApplication.class, args);
-    }
+        SpringApplication.run(TextTransformerApplication.class, args);}
 }
