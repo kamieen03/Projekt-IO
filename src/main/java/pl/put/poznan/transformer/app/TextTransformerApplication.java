@@ -9,10 +9,5 @@ import pl.put.poznan.transformer.logic.TextTransformer;
 public class TextTransformerApplication {
 
     public static void main(String[] args) {
-        TextTransformer t = new TextTransformer(new String[]{"kappa"});
-        for (int i = -10; i < 10; i++) {
-            System.out.println(t.transformNumbers(String.valueOf(i)));
-        }
-        SpringApplication.run(TextTransformerApplication.class, args);
-    }
+        SpringApplication.run(TextTransformerApplication.class, args);}
 }
