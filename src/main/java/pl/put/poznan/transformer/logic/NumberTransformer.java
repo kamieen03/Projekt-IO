@@ -5,8 +5,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+
+/**
+ * Klasa ma służyć do zamiany liczb z cyfr na słowa
+ * główną metodą klasy jest transform_numbers; wszystkie pozostałe funkcje
+ * i klasa NumberArray pełnią funkcję pomocnicze
+ * zakres liczb: [-10^12 - 1; 10^12 - 1]
+ */
 public class NumberTransformer {
 
+    /**
+     * Jedyna publiczna metoda klasy, wywoływana statycznie, wykonuje transformację,
+     * np. "-123" na "minus sto dwadzieścia trzy"
+     *
+     * @param liczba transformowana liczba zapisana jako jako ciąg cyfr z ewentualnym
+     *        minusem na początku
+     * @return liczbę przetransformowaną na język polski jako słowa odzdzielone
+     *         spacjami
+     */
     public static String transform_numbers(String liczba){
         boolean ujemna = false;
         if (liczba.charAt(0) == '-'){
@@ -18,7 +34,6 @@ public class NumberTransformer {
         }
 
         int len = liczba.length();
-        //System.out.println(liczba);
         String result = "";
         String temp;
         int a = 0;
@@ -41,6 +56,14 @@ public class NumberTransformer {
         return result;
     }
 
+    /**
+     * Transformuje ciąg trzech cyfr, np. transformując liczbę "123456",
+     * funkcja processOneSlice jest wywoływana dwukrotnie:
+     * najperw dla "456", następnie dla "123"
+     *
+     * @param slice ciąg trzech cyfr (podciąg całej liczby)
+     * @return      podciąg przetransformowany na słowa
+     */
     private static String processOneSlice(String slice){
 
         ArrayList<String> words = new ArrayList<>();
@@ -75,7 +98,19 @@ public class NumberTransformer {
 }
 
 
-
+/**
+ * Klasa - kontener przechowująca fragmenty liczb (jako słowa) potrzebne do konstrukcji
+ * całości
+ * fragmenty są przechowywane w listach SMALL, TENS, itd., ładownaych z pliku liczby.txt
+ * klasa jest ładowana w trakcie pierwszego wywołania transformNumber z klasy NumberTransformer
+ * dotarcza również funkcję mapping wymaganą do odmiany słów "tysiąc" i "milion"
+ *
+ * SMALL :1-19
+ * TENS : 20-90, co 10
+ * HUNDREDS: 100 - 900, co 100
+ * THOUSANDS: tysiąc, tysiące, tysięcy
+ * MILONS: milion, miliony, milionów
+ */
 class NumberArray{
     public static ArrayList<String> SMALL;
     public static ArrayList<String> TENS;
@@ -85,17 +120,23 @@ class NumberArray{
 
     static {
         try {
-            SMALL = NumberArray.read().get("small");
-            TENS = NumberArray.read().get("tens");
-            HUNDREDS = NumberArray.read().get("hundreds");
-            THOUSANDS = NumberArray.read().get("thousands");
-            MILIONS = NumberArray.read().get("milions");
+            HashMap<String, ArrayList<String>> dict = NumberArray.read();
+            SMALL = dict.get("small");
+            TENS = dict.get("tens");
+            HUNDREDS = dict.get("hundreds");
+            THOUSANDS = dict.get("thousands");
+            MILIONS = dict.get("milions");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
+    /**
+     * Odczytuje fragmenty nazw liczb z pliku liczby.txt
+     *
+     * @return haszmapa postaci typ(np. "small" labo "tens"): [słowa]
+     * @throws IOException
+     */
     public static HashMap<String, ArrayList<String>> read() throws IOException {
         HashMap<String, ArrayList<String>> numbersDict = new HashMap<>();
         File file = new File("src/liczby.txt");
@@ -130,9 +171,14 @@ class NumberArray{
         return numbersDict;
     }
 
+    /**
+     * Na podstawie trzycofrowego slice funkcja decyduje, czy wybrać np.
+     * "tysiąc", "tysiące" czy "tysięcy"
+     *
+     * @param slice ciąg trzycyfrowy
+     * @return indeks w tabelach THOUSANDS i MILIONS
+     */
     public static int mapping(String slice){
-        //na podstawie trzycofrowego slice funkcja decyduje, czy wybrać np.
-        // "tysiąc", "tysiące" czy "tysięcy"
         int val = Integer.valueOf(slice.substring(1, 3));
         if (val == 1) return 0;
         if ((val % 10 == 2 || val %10 == 3 || val % 10 == 4) && slice.charAt(1) != '1'){
