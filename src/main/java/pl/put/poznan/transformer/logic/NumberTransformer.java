@@ -8,6 +8,11 @@ import java.util.HashMap;
 public class NumberTransformer {
 
     public static String transform_numbers(String liczba){
+        boolean ujemna = false;
+        if (liczba.charAt(0) == '-'){
+            ujemna = true;
+            liczba = liczba.substring(1);
+        }
         if (liczba.equals("0")){
             return "zero";
         }
@@ -32,6 +37,7 @@ public class NumberTransformer {
             result = temp.concat(result);
             a++;
         }
+        if (ujemna) result = "minus ".concat(result);
         return result;
     }
 
