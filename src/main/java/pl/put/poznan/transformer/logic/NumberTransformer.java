@@ -3,6 +3,7 @@ package pl.put.poznan.transformer.logic;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -34,7 +35,7 @@ public class NumberTransformer {
         }
 
         int len = liczba.length();
-        String result = "";
+        ArrayList<String> resultArr = new ArrayList<>();
         String temp;
         int a = 0;
         for(int i = len; i >0; i = i - 3) {
@@ -44,14 +45,21 @@ public class NumberTransformer {
                 slice = String.format("%3s", slice).replace(' ', '0');
             }
             temp = NumberTransformer.processOneSlice(slice);
-            if (a>0 && temp.equals("jeden")) temp = "";
-            temp = temp.concat(" ");
-            if (a == 1) temp = temp.concat(NumberArray.THOUSANDS.get(NumberArray.mapping(slice)));
-            if (a == 2) temp = temp.concat(NumberArray.MILIONS.get(NumberArray.mapping(slice)));
-            temp = temp.concat(" ");
-            result = temp.concat(result);
+            if (a>0) {
+                if (temp.equals("jeden")) temp = "";
+                if (a == 1 && !slice.equals("000")) resultArr.add(NumberArray.THOUSANDS.get(NumberArray.mapping(slice)));
+                if (a == 2 && !slice.equals("000")) resultArr.add(NumberArray.MILIONS.get(NumberArray.mapping(slice)));
+            }
+            if (!temp.equals("")) resultArr.add(temp);
             a++;
         }
+        String result = "";
+        Collections.reverse(resultArr);
+        for(String part: resultArr){
+            result = result.concat(part);
+            result = result.concat(" ");
+        }
+        result = result.substring(0, result.length() - 1);
         if (ujemna) result = "minus ".concat(result);
         return result;
     }
@@ -139,7 +147,7 @@ class NumberArray{
      */
     public static HashMap<String, ArrayList<String>> read() throws IOException {
         HashMap<String, ArrayList<String>> numbersDict = new HashMap<>();
-        File file = new File("src/liczby.txt");
+        File file = new File("src/main/resources/liczby.txt");
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -165,9 +173,6 @@ class NumberArray{
             }
         }
         numbersDict.put(type, currNumberArr);
-        for (String typ:numbersDict.keySet()) {
-            System.out.println(numbersDict.get(typ));
-        }
         return numbersDict;
     }
 

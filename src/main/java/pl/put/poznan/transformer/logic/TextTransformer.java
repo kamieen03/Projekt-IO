@@ -1,8 +1,5 @@
 package pl.put.poznan.transformer.logic;
-import java.io.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.ArrayList;
+
 /**
  * This is just an example to show that the logic should be outside the REST service.
  */
