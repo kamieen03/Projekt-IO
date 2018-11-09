@@ -1,7 +1,6 @@
 body{
 	font-size: 20px;
 	margin: 0;
-	font-family: 'Roboto Mono', monospace;
 	background-image: url("stripes-light.png");
 	color: #FBFEFB;
 }
@@ -36,6 +35,8 @@ body{
 
 .editor{
 	height: calc(100vh - 92px);
+	color: #000000;
+	font-family: 'Roboto Mono', monospace;
 	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
