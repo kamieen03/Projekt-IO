@@ -1,6 +1,7 @@
 # Projekt-IO
 Text-Transformer
-Dla osób pracujących z danymi tekstowymi nasza aplikacja Text Transformer umożliwi transformacje danych tekstowych. Aplikacja będzie dostępna poprzez GUI a także zdalne API dzięki czemu będzie można ją zintegrować z istniejącymi narzędziami.
+Dla osób pracujących z danymi tekstowymi nasza aplikacja Text Transformer umożliwi transformacje danych tekstowych. 
+Aplikacja będzie dostępna poprzez GUI a także zdalne API dzięki czemu będzie można ją zintegrować z istniejącymi narzędziami.
 Wybrane elementy:
 * Jako twórca aplikacji mogę wywołać transformację zdalnie poprzez REST, aby móc  zintegrować narzędzie z moimi innymi aplikacjami
 * Jako użytkownik mogę zmianać wielkości liter – zestaw trzech transformacji (upper, lower, capitalize)

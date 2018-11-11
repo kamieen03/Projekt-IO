@@ -12,28 +12,38 @@ public class TextTransformer {
     }
 
     public String transform(String text){
-        String[] words = splitBeforeTransform(text);
-        String result = "";
-        for (int i = 0; i< words.length; i++){
-            words[i] = transformSingleWord(words[i]);
+
+        for (String transform: transforms){
+            switch (transform){
+                case "upper": text = this.transformUpper(text);
+                    break;
+                case "lower": text = this.transformLower(text);
+                    break;
+                case "capitalize": text = this.transformCapitalize(text);
+                    break;
+                case "inverse": text = this.transformInverse(text);
+                    break;
+                case "nr_to_words": text = this.transformNumbers(text);
+                    break;
+                case "words_to_nr":
+                    break;
+                case "removeDuplicatedWords": text = this.removeDuplicatedWords(text);
+                    break;
+            }
         }
-        return String.join(" ", words);
+
+        return text;
     }
 
-    private String transformSingleWord(String text){
-        switch (transforms[0]){
-            case "upper": return this.transformUpper(text);
-            case "lower": return this.transformLower(text);
-            case "capitalize": return this.transformCapitalize(text);
-            case "inverse": return this.transformInverse(text);
-            case "nr_to_words": return this.transformNumbers(text);
-            case "words_to_nr":  return "";
+    private String transformNumbers(String text){
+        String[] words = text.split(" ");
+        StringBuilder builder = new StringBuilder();
+        for (String word: words) {
+            String transformedWord = NumberTransformer.transform_numbers(word);
+            builder.append(transformedWord+" ");
         }
-        return "";
-    }
+        return builder.toString().substring(0, builder.toString().length() - 1);
 
-    private String transformNumbers(String number){
-        return NumberTransformer.transform_numbers(number);
     }
 
     private String transformUpper(String text){
@@ -45,7 +55,13 @@ public class TextTransformer {
     }
 
     private String transformCapitalize(String text){
-        return Character.toUpperCase(text.charAt(0)) + text.substring(1).toLowerCase();
+        String[] words = text.split(" ");
+        StringBuilder builder = new StringBuilder();
+        for (String word: words) {
+            String transformedWord = Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+            builder.append(transformedWord+" ");
+        }
+        return builder.toString().substring(0, builder.toString().length() - 1);
     }
 
     private String transformInverse(String text){
@@ -62,8 +78,19 @@ public class TextTransformer {
         return String.valueOf(reversed);
     }
 
-    private String[] splitBeforeTransform(String text){
-        return text.split(" ");
+    private String removeDuplicatedWords(String text){
+        String[] words = text.split(" ");
+        if(words.length==0) return "";
+        if(words.length==1) return words[0].toString();
+
+        StringBuilder output = new StringBuilder();
+        output.append(words[0]);
+        for (int i =1; i<words.length; i++){
+            if (!words[i].equals(words[i-1])){
+                output.append(" "+words[i]);
+            }
+        }
+        return output.toString();
     }
 }
 
