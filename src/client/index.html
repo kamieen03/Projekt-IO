@@ -6,6 +6,8 @@
 	<meta name="description" content="Tranform your text into something amazing!" />
 	<meta name="keywords" content="text, tranformation, upper case, lower case, inverse, words to numbers" />
 	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="scripts/rangyinputs-jquery-src.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Roboto+Mono:700&amp;subset=latin-ext" rel="stylesheet">
 </head>
 <body>
@@ -16,21 +18,25 @@
 		</div>
 
 		<div class = "options">
-			<button type="button" onclick="POST()">Upper case</button>
-			<button type="button">Lower case</button>
-			<button type="button">Inverse</button>
-			<button type="button">Numbers to words</button>
-			<button type="button">Words to numbers</button>
+			<button type="button" onclick="POST('upper')">Upper case</button>
+			<button type="button" onclick="POST('lower')">Lower case</button>
+			<button type="button" onclick="POST('capitalize')">Capitalize</button>
+			<button type="button" onclick="POST('inverse')">Inverse</button>
+			<button type="button" onclick="POST('nr_to_words')">Numbers to words</button>
+			<button type="button" onclick="POST('words_to_nr')">Words to numbers</button>
 		</div>
 
 		<div class = "editor" id = "ppp">
+			<textarea id="textarea" autofocus>
+
+			</textarea>
 
 		</div>
 
 
 	</div>
 
-	<script src="connect_REST.js"></script>
+	<script src="scripts/connect_REST.js"></script>
 
 </body>
 </html>
