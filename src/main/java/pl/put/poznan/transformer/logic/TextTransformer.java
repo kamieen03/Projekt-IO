@@ -11,23 +11,35 @@ public class TextTransformer {
         this.transforms = transforms;
     }
 
-    public String transformNumbers(String number){
+    public String transform(String text){
+        switch (transforms[0]){
+            case "upper": return this.transformUpper(text);
+            case "lower": return this.transformLower(text);
+            case "capitalize": return this.transformCapitalize(text);
+            case "inverse": return this.transformInverse(text);
+            case "nr_to_words": return this.transformNumbers(text);
+            case "words_to_nr":  return "";
+        }
+        return "";
+    }
+
+    private String transformNumbers(String number){
         return NumberTransformer.transform_numbers(number);
     }
 
-    public String transformUpper(String text){
+    private String transformUpper(String text){
         return  text.toUpperCase();
     }
 
-    public String transformLower(String text){
+    private String transformLower(String text){
         return text.toLowerCase();
     }
 
-    public String transformCapitalize(String text){
+    private String transformCapitalize(String text){
         return Character.toUpperCase(text.charAt(0)) + text.substring(1).toLowerCase();
     }
 
-    public String transformInverse(String text){
+    private String transformInverse(String text){
         char [] reversed = new char[text.length()];
 
         for(int i = 0; i < text.length(); i++){
