@@ -33,6 +33,7 @@ public class NumberTransformer {
         for (char c : liczba.toCharArray()){
             if (!Character.isDigit(c)) return liczba;
         }
+        if (liczba.length() > 9) return liczba;
         if (liczba.equals("0")){
             return "zero";
         }
