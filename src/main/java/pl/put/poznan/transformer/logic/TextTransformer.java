@@ -12,6 +12,15 @@ public class TextTransformer {
     }
 
     public String transform(String text){
+        String[] words = splitBeforeTransform(text);
+        String result = "";
+        for (int i = 0; i< words.length; i++){
+            words[i] = transformSingleWord(words[i]);
+        }
+        return String.join(" ", words);
+    }
+
+    private String transformSingleWord(String text){
         switch (transforms[0]){
             case "upper": return this.transformUpper(text);
             case "lower": return this.transformLower(text);
@@ -51,6 +60,10 @@ public class TextTransformer {
            }
 
         return String.valueOf(reversed);
+    }
+
+    private String[] splitBeforeTransform(String text){
+        return text.split(" ");
     }
 }
 

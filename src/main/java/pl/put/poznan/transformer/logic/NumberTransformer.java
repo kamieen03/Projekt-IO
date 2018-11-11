@@ -11,7 +11,7 @@ import java.util.HashMap;
  * Klasa ma służyć do zamiany liczb z cyfr na słowa
  * główną metodą klasy jest transform_numbers; wszystkie pozostałe funkcje
  * i klasa NumberArray pełnią funkcję pomocnicze
- * zakres liczb: [-10^12 - 1; 10^12 - 1]
+ * zakres liczb: [-10^12 + 1; 10^12 - 1]
  */
 public class NumberTransformer {
 
@@ -29,6 +29,9 @@ public class NumberTransformer {
         if (liczba.charAt(0) == '-'){
             ujemna = true;
             liczba = liczba.substring(1);
+        }
+        for (char c : liczba.toCharArray()){
+            if (!Character.isDigit(c)) return liczba;
         }
         if (liczba.equals("0")){
             return "zero";

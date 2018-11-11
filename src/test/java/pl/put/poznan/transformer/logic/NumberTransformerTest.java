@@ -20,7 +20,7 @@ public class NumberTransformerTest {
                 "tysiąc pięć",
                 "trzy tysiące pięćset dwanaście",
                 "osiem milionów",
-                "minus dziewięćset osiemdzisiąt siedem milionów sześćset pięćdziesiąt " +
+                "minus dziewięćset osiemdziesiąt siedem milionów sześćset pięćdziesiąt " +
                         "cztery tysiące trzysta dwadzieścia jeden"};
         String result;
         for (int i = 0; i < numbers.length; i++) {
