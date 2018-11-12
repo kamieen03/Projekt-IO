@@ -21,7 +21,7 @@ public class NumberTransformer {
      *
      * @param liczba transformowana liczba zapisana jako jako ciąg cyfr z ewentualnym
      *        minusem na początku
-     * @return liczbę przetransformowaną na język polski jako słowa odzdzielone
+     * @return liczba przetransformowana na język polski jako słowa oddzielone
      *         spacjami
      */
     public static String transform_numbers(String liczba){
