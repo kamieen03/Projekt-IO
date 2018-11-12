@@ -45,6 +45,10 @@ body{
 	border-right: 2px solid #E5E5E5;
 }
 
+::selection{
+	background: #E5E5E5;
+}
+
 button{
 	border: 1px solid #E5E5E5;
 	width: 150px;
@@ -56,11 +60,11 @@ button{
 }
 
 textarea{
-	overflow: hidden;
+	overflow: auto;
 	border: none;
+	font-family: 'Chakra Petch', sans-serif;
 	outline: none;
 	margin: 75px;
 	width: calc(100% - 150px);
 	height: calc(100% - 159px);
-
 }

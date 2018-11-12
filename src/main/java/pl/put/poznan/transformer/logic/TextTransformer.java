@@ -25,8 +25,6 @@ public class TextTransformer {
                     break;
                 case "nr_to_words": text = this.transformNumbers(text);
                     break;
-                case "words_to_nr":
-                    break;
                 case "removeDuplicatedWords": text = this.removeDuplicatedWords(text);
                     break;
             }
