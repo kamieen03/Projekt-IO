@@ -78,6 +78,7 @@ public class TextTransformer {
 
     private String removeDuplicatedWords(String text){
         String[] words = text.split(" ");
+
         if(words.length==0) return "";
         if(words.length==1) return words[0].toString();
 
