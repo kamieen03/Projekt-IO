@@ -29,4 +29,27 @@ public class NumberTransformerTest {
         }
 
     }
+
+    @Test
+    public void check_decimals(){
+        double[] numbers = {1.01, 2.1, 0.12, -0.56, -24.31, -1.62, 45.1, -3.02, -9.2, 3.4, 56.7};
+        String[] names = {
+                "jeden i jedna setna",
+                "dwa i jedna dziesiąta",
+                "dwanaście setnych",
+                "minus pięćdziesiąt sześć setnych",
+                "minus dwadzieścia cztery i trzydzieści jeden setnych",
+                "minus jeden i sześćdziesiąt dwie setne",
+                "czterdzieści pięć i jedna dziesiąta",
+                "minus trzy i dwie setne",
+                "minus dziewięć i dwie dziesiąte",
+                "trzy i cztery dziesiąte",
+                "pięćdziesiąt sześć i siedem dziesiątych"
+        };
+        String result;
+        for (int i = 0; i < numbers.length; i++) {
+            result = NumberTransformer.transform_numbers(String.valueOf(numbers[i]));
+            assertEquals(names[i], result);
+        }
+    }
 }

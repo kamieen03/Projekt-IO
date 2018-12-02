@@ -8,16 +8,16 @@ import java.util.HashMap;
 
 
 /**
- * Klasa ma służyć do zamiany liczb z cyfr na słowa
- * główną metodą klasy jest transform_numbers; wszystkie pozostałe funkcje
- * i klasa NumberArray pełnią funkcję pomocnicze
- * zakres liczb: [-10^9 + 1; 10^9 - 1]
+ * Transformator liczb.
+ * Wywołując statyczną metodę {@code transform_numbers} można dokonać
+ * transformacji liczby na język polski.
+ * Zakres liczb: [-10^9 + 1; 10^9 - 1].
+ * Maksymalnie dwa miejsca po przecinku.
  */
 public class NumberTransformer {
 
     /**
-     * Jedyna publiczna metoda klasy, wywoływana statycznie, wykonuje transformację,
-     * np. "-123" na "minus sto dwadzieścia trzy"
+     * Zwraca liczbę przetransformowaną na język polski.
      *
      * @param liczba transformowana liczba zapisana jako jako ciąg cyfr z ewentualnym
      *        minusem na początku
@@ -25,16 +25,27 @@ public class NumberTransformer {
      *         spacjami
      */
     public static String transform_numbers(String liczba){
+        for (char c : liczba.toCharArray()){
+            if (!Character.isDigit(c) && c!='.' && c!='-') return liczba;
+        }
+
+        boolean decimal = false;
+        String coma="";
+        if(liczba.contains(".")){
+            String[] parts = liczba.split("[.]");
+            liczba = parts[0];
+            coma = parts[1];
+            decimal = true;
+        }
+
         boolean ujemna = false;
         if (liczba.charAt(0) == '-'){
             ujemna = true;
             liczba = liczba.substring(1);
         }
-        for (char c : liczba.toCharArray()){
-            if (!Character.isDigit(c)) return liczba;
-        }
+
         if (liczba.length() > 9) return liczba;
-        if (liczba.equals("0")){
+        if (liczba.equals("0") && !decimal){
             return "zero";
         }
 
@@ -63,19 +74,16 @@ public class NumberTransformer {
             result = result.concat(part);
             result = result.concat(" ");
         }
-        result = result.substring(0, result.length() - 1);
+        if (result.length() > 0)
+            result = result.substring(0, result.length() - 1);
         if (ujemna) result = "minus ".concat(result);
+        if(decimal) {
+            if(liczba.charAt(0) != '0') result += " i ";
+            result+= handleComa(coma);
+        }
         return result;
     }
 
-    /**
-     * Transformuje ciąg trzech cyfr, np. transformując liczbę "123456",
-     * funkcja processOneSlice jest wywoływana dwukrotnie:
-     * najperw dla "456", następnie dla "123"
-     *
-     * @param slice ciąg trzech cyfr (podciąg całej liczby)
-     * @return      podciąg przetransformowany na słowa
-     */
     private static String processOneSlice(String slice){
 
         ArrayList<String> words = new ArrayList<>();
@@ -104,6 +112,40 @@ public class NumberTransformer {
             result = result.concat(" ");
         }
         result = result.substring(0, result.length() - 1);
+
+        return result;
+    }
+
+    private static String handleComa(String slice) {
+        boolean decimal = slice.length() == 1;
+        int val = Integer.valueOf(slice);
+        String result = "";
+        if (val == 1) {
+            if (decimal) result += "jedna dziesiąta";
+            else result += "jedna setna";
+        } else if(val == 2){
+           if(decimal) result += "dwie dziesiąte";
+           else result += "dwie setne";
+        } else if (val >= 3 && val <= 19) {
+            result += processOneSlice(
+                    String.format("%3s", slice).replace(' ', '0')
+            );
+            if(decimal && val <= 4) result += " dziesiąte";
+            else if(decimal) result += " dziesiątych";
+            else if(val <=4) result += " setne";
+            else result += " setnych";
+        } else if(2 <= val % 10 && val%10 <= 4){
+            result += NumberArray.TENS.get(slice.charAt(0) - '0' - 2);
+            if (val %2 == 0) result += " dwie";
+            else if(val %3 == 0) result += " trzy";
+            else result += " cztery";
+            result += " setne";
+        } else{
+            result += processOneSlice(
+                    String.format("%3s", slice).replace(' ', '0')
+            );
+            result += " setnych";
+        }
         return result;
     }
 
