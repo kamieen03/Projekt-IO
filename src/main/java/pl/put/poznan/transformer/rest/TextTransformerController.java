@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/{text}")
+@RequestMapping("/{text}/")
 public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
@@ -20,6 +20,7 @@ public class TextTransformerController {
         // log the parameters
         logger.debug(text);
         logger.debug(Arrays.toString(transforms));
+        System.out.println(text);
 
         // do the transformation, you should run your logic here, below just a silly example
         TextTransformer transformer = new TextTransformer(transforms);
