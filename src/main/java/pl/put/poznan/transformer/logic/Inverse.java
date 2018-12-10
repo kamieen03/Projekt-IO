@@ -9,17 +9,19 @@ public class Inverse extends TextTransformerDecorator {
         super(decoratedText);
     }
 
+
+    /**
+     * Odwraca kolejnośc znaków w tekscie przy zachowaniu wielkości znaków
+     * na odpowiednich pozycjach.
+     * @param text tekst poddawany transformacji
+     * @return odwrócony tekst
+     */
     @Override
     public String transform(String text) {
         return inverse(super.transform(text)); // + inverse
 }
 
-    /**
-     * Odwóraca kolejnośc znaków w tekscie przy zachowaniu wielkości znaków
-     * na odpowiednich pozycjach.
-     * @param text tekst poddawany transformacji
-     * @return odwrócony tekst
-     */
+
     private String inverse(String text){
         char [] reversed = new char[text.length()];
         for(int i = 0; i < text.length(); i++){
