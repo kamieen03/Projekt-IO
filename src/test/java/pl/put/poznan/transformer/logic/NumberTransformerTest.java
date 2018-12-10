@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 public class NumberTransformerTest {
 
     @Test
-    public void transform_numbers() {
-        int[] numbers = {0,1,-1,100,20,38,999, 1000, 1005, 3512, 8000000, -987654321};
+    public void transformIntegers() {
+        int[] numbers = {0, 1, -1, 100, 20, 38, 999, 1000, 1005, 3512, 8000000, -987654321};
         String[] names = {
                 "zero",
                 "jeden",
@@ -31,7 +31,7 @@ public class NumberTransformerTest {
     }
 
     @Test
-    public void check_decimals(){
+    public void transformFloats(){
         double[] numbers = {1.01, 2.1, 0.12, -0.56, -24.31, -1.62, 45.1, -3.02, -9.2, 3.4, 56.7};
         String[] names = {
                 "jeden i jedna setna",

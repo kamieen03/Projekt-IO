@@ -1,4 +1,12 @@
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\Capitalize.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\NumberToWords.java
 C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\TextTransformer.java
 C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\rest\TextTransformerController.java
 C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\app\TextTransformerApplication.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\LowerCase.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\RemoveDuplicates.java
 C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\NumberTransformer.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\UpperCase.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\Inverse.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\SimpleText.java
+C:\Users\Uzytkownik\IdeaProjects\Projekt-IO\src\main\java\pl\put\poznan\transformer\logic\TextTransformerDecorator.java
