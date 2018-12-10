@@ -7,7 +7,7 @@ public class RemoveDuplicates extends TextTransformerDecorator {
 
     @Override
     public String transform(String text) {
-        return removeDuplicatedWords(super.transform(text));
+        return removeDuplicatedWords(super.transform(text)); // + remove duplicates
     }
 
     private String removeDuplicatedWords(String text){

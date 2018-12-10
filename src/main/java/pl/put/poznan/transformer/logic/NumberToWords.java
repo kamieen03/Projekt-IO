@@ -9,7 +9,7 @@ public class NumberToWords extends TextTransformerDecorator{
 
     @Override
     public String transform(String text) {
-        return nrToWords(super.transform(text));
+        return nrToWords(super.transform(text));    // + number to words
     }
 
     private String nrToWords(String text){

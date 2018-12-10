@@ -1,5 +1,9 @@
 package pl.put.poznan.transformer.logic;
-
+/**
+ * Dekorator.
+ * Umożliwia dodanie transformacji odwrócenia kolejności znaków w tekscie
+ * do obiektu implementującgo interfejs TextTransformer;
+ */
 public class Inverse extends TextTransformerDecorator {
     public Inverse(TextTransformer decoratedText) {
         super(decoratedText);
@@ -10,6 +14,12 @@ public class Inverse extends TextTransformerDecorator {
         return inverse(super.transform(text)); // + inverse
 }
 
+    /**
+     * Odwóraca kolejnośc znaków w tekscie przy zachowaniu wielkości znaków
+     * na odpowiednich pozycjach.
+     * @param text tekst poddawany transformacji
+     * @return odwrócony tekst
+     */
     private String inverse(String text){
         char [] reversed = new char[text.length()];
         for(int i = 0; i < text.length(); i++){
