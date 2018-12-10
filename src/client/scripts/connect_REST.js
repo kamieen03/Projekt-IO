@@ -1,4 +1,4 @@
-function POST(param){
+function GET(param){
     var sel = $("#textarea").getSelection().text;
     fetch('http://localhost:8080/' + sel + "/?transforms=" + param)
         .then(function(response) {
