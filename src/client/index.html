@@ -17,20 +17,42 @@
 			Text Transformer
 		</div>
 
+
 		<div class = "options">
+
+			<div class = "multiButton">
+				<button type="button" onclick="showCheckboxes()" >Choose...</button>
+				<div id = "checkboxes">
+					<label for="cb1">
+						<input type="checkbox" id="cb1" />Upper case</label>
+					<label for="cb2">
+						<input type="checkbox" id="cb2" />Lower case</label>
+					<label for="cb3">
+						<input type="checkbox" id="cb3" />Capitalize</label>
+					<label for="cb4">
+						<input type="checkbox" id="cb4" />Inverse</label>
+					<label for="cb5">
+						<input type="checkbox" id="cb5" />Numbers to words</label>
+					<label for="cb6">
+						<input type="checkbox" id="cb6" />Remove duplicates</label>
+				</div>
+			</div>
+
 			<button type="button" onclick="GET('upper')">Upper case</button>
 			<button type="button" onclick="GET('lower')">Lower case</button>
 			<button type="button" onclick="GET('capitalize')">Capitalize</button>
 			<button type="button" onclick="GET('inverse')">Inverse</button>
 			<button type="button" onclick="GET('nr_to_words')">Numbers to words</button>
 			<button type="button" onclick="GET('removeDuplicatedWords')">Remove duplicates</button>
+
 		</div>
 
+
 		<div class = "editor" id = "ppp">
+
 			<textarea id="textarea" autofocus>
 
 			</textarea>
-
 		</div>
 
 

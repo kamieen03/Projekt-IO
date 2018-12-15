@@ -68,3 +68,30 @@ textarea{
 	width: calc(100% - 150px);
 	height: calc(100% - 159px);
 }
+
+
+.multiButton {
+	display: inline-block;
+}
+
+#checkboxes {
+	display: none;
+	position: absolute;
+	border: 1px solid #E5E5E5;
+	width: 148px;
+	font-size: 11px;
+	background-color: #213131;
+	color: #FBFEFB;
+	font-family: 'Roboto Mono', monospace;
+}
+
+#checkboxes label {
+	display: block;
+	text-align: left;
+}
+
+#checkboxes label:hover {
+	background-color: #E5E5E5;
+	color: black;
+}
+
