@@ -10,14 +10,53 @@ function GET(param){
 }
 
 var expanded = false;
+var checked = 0;
 
 function showCheckboxes() {
-    var checkboxes = document.getElementById("checkboxes");
+    var checkboxList = document.getElementById("checkboxes");
+
+    if(checked > 0){
+        var checkboxes = checkboxList.getElementsByTagName("input");
+        multipleGET(checkboxes);
+        document.getElementById("lb1").innerHTML = "Choose...";
+        for( i = 0 ; i < checkboxes.length; i++)
+            checkboxes[i].checked = false;
+        checked = 0;
+    }
+
     if (!expanded) {
-        checkboxes.style.display = "block";
+        checkboxList.style.display = "block";
         expanded = true;
     } else {
-        checkboxes.style.display = "none";
+        checkboxList.style.display = "none";
         expanded = false;
     }
 }
+
+var checkboxes = document.getElementById("checkboxes").getElementsByTagName("input");
+
+for(i=0; i < checkboxes.length; i++)
+    checkboxes.item(i).addEventListener("click", multiTransform);
+
+function multiTransform(){
+    if(this.checked){
+        checked++;
+        if(checked === 1)
+            document.getElementById("lb1").innerHTML = "Transform";
+    }
+    else{
+        checked--;
+        if(checked === 0)
+            document.getElementById("lb1").innerHTML = "Choose...";
+    }
+}
+
+function multipleGET(checkboxes){
+    var params = [];
+
+    for(i = 0; i < checkboxes.length; i++)
+        if(checkboxes[i].checked)
+            params.push(checkboxes[i].name);
+    GET(params);
+}
+
