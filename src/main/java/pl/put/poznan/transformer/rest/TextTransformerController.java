@@ -14,6 +14,7 @@ public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
 
+
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public String get(@PathVariable String text,
                               @RequestParam(value="transforms", defaultValue="upper") String[] transforms) {
@@ -55,6 +56,10 @@ public class TextTransformerController {
                 case "nr_to_words": transformer = new NumberToWords(transformer);
                     break;
                 case "removeDuplicatedWords": transformer = new RemoveDuplicates(transformer);
+                    break;
+                case "toShortcuts": transformer = new Shortcut(transformer);
+                    break;
+                case "extendShortcuts": transformer = new RemoveDuplicates(transformer);
                     break;
             }
         }
