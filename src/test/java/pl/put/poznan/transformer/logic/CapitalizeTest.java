@@ -21,9 +21,18 @@ public class CapitalizeTest {
     }
 
     @Test
-    public void transform(){
-        String[] words = {"a b c", "Jeden", "dwa", "f", "ABC", ". A. bC;", ";cd"};
-        String[] expected = {"A B C", "Jeden", "Dwa", "F", "Abc", ". A. Bc;", ";cd"};
+    public void transformNonCapitalized(){
+        String[] words = {"a b c", "dwa", "f"};
+        String[] expected = {"A B C", "Dwa", "F"};
+        for (int i = 0; i < words.length; i++) {
+            assertEquals(expected[i], t.transform(words[i]));
+        }
+    }
+
+    @Test
+    public void transformCapitalized(){
+        String[] words = {"OSIEM", "Dwa", "JEdEN", ". A. bC;", ";cd"};
+        String[] expected = {"Osiem", "Dwa", "Jeden", ". A. Bc;", ";cd"};
         for (int i = 0; i < words.length; i++) {
             assertEquals(expected[i], t.transform(words[i]));
         }

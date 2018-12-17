@@ -1,10 +1,20 @@
 package pl.put.poznan.transformer.logic;
-
+/**
+ * Dekorator.
+ * Umożliwia dodanie transformacji usunięcia z tekstu występujących
+ * kolejno duplikatów do obiektu implementującgo interfejs TextTransformer;
+ */
 public class RemoveDuplicates extends TextTransformerDecorator {
     public RemoveDuplicates(TextTransformer decoratedText) {
         super(decoratedText);
     }
 
+    /**
+     * Usuwa duplikaty (występujące kolejno identyczne
+     * łańcuchy znaków) z tekstu.
+     * @param text tekst poddawany transformacji
+     * @return odwrócony tekst
+     */
     @Override
     public String transform(String text) {
         return removeDuplicatedWords(super.transform(text)); // + remove duplicates

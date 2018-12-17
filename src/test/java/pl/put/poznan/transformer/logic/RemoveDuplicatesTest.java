@@ -21,9 +21,18 @@ public class RemoveDuplicatesTest {
     }
 
     @Test
-    public void transform(){
-        String[] words = {"a a a", "a a b", "dwa dwa osiem", "jeden dwa trzy trzy cztery"};
-        String[] expected = {"a", "a b", "dwa osiem", "jeden dwa trzy cztery"};
+    public void transformDuplicated(){
+        String[] words = {"a a a", "a a b", "dwa dwa osiem", "jeden dwa trzy trzy cztery", ". . ."};
+        String[] expected = {"a", "a b", "dwa osiem", "jeden dwa trzy cztery", "."};
+        for (int i = 0; i < words.length; i++) {
+            assertEquals(expected[i], t.transform(words[i]));
+        }
+    }
+
+    @Test
+    public void transformNonDuplicated(){
+        String[] words = {"a", "raz dwa raz", "x . x ."};
+        String[] expected = {"a", "raz dwa raz", "x . x ."};
         for (int i = 0; i < words.length; i++) {
             assertEquals(expected[i], t.transform(words[i]));
         }
