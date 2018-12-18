@@ -7,38 +7,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShortcutTransformer{
-
-    Map<String,String> shortcutsMap;
-
-    public ShortcutTransformer(){
-
-        shortcutsMap = loadShortcutsFromCSVFile("src/main/resources/shortcuts2.csv");
-    }
+public class DictonaryLoader {
 
 
-    public String toFullForm(String shortcut){
-        if (shortcutsMap.containsKey(shortcut)){
-            return shortcutsMap.get(shortcut);
-        } else {
-            return shortcut;
-        }
-    }
+    public static Map<String, String> loadDictonaryFromCSV(String path){
 
-    public String toShortcut(String fullForm){
-        if (shortcutsMap.containsValue(fullForm)){
-            for (String s : shortcutsMap.keySet()) {
-                if (shortcutsMap.get(s).equals(fullForm)) {
-                    return s;
-                }
-            }
-            return fullForm;
-        } else {
-            return fullForm;
-        }
-    }
-
-    public Map<String, String> loadShortcutsFromCSVFile(String path){
         Map<String,String> map =  new HashMap<String, String>();
 
         BufferedReader br = null;

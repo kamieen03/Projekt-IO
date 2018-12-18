@@ -6,12 +6,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ShortcutTransformerTest {
-    private ShortcutTransformer sh = null;
+public class ShortcutsTest {
+    private Shorten sh = null;
+    private ExtendShortcut es = null;
 
     @Before
     public void setUp() throws Exception {
-        sh = new ShortcutTransformer();
+        TextTransformer transformer = new SimpleText();
+        sh = new Shorten(transformer);
+        es = new ExtendShortcut(transformer);
     }
 
     @After
@@ -24,7 +27,7 @@ public class ShortcutTransformerTest {
         String[] words = {"mgr", "nr", "str.", "tj.", "pl.", "zob." };
         String[] expected = {"magister", "numer", "strona", "to jest", "plac", "zobacz"};
         for (int i = 0; i < words.length; i++) {
-            assertEquals(expected[i], sh.toFullForm(words[i]));
+            assertEquals(expected[i], es.toFullForm(words[i]));
         }
     }
 
@@ -54,7 +57,7 @@ public class ShortcutTransformerTest {
             assertEquals(expected[i], sh.toShortcut(words[i]));
         }
         for (int i = 0; i < words.length; i++) {
-            assertEquals(expected[i], sh.toFullForm(words[i]));
+            assertEquals(expected[i], es.toFullForm(words[i]));
         }
     }
 }

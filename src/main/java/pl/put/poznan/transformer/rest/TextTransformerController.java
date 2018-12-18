@@ -4,7 +4,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.transformer.logic.*;
 
-import javax.xml.soap.Text;
 import java.util.Arrays;
 
 @CrossOrigin
@@ -57,9 +56,11 @@ public class TextTransformerController {
                     break;
                 case "removeDuplicatedWords": transformer = new RemoveDuplicates(transformer);
                     break;
-                case "toShortcuts": transformer = new Shortcut(transformer);
+                case "toShortcuts": transformer = new Shorten(transformer);
                     break;
-                case "extendShortcuts": transformer = new RemoveDuplicates(transformer);
+                case "extendShortcuts": transformer = new ExtendShortcut(transformer);
+                    break;
+                case "toLatex": transformer = new Latex(transformer);
                     break;
             }
         }
