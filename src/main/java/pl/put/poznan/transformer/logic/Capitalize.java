@@ -1,10 +1,21 @@
 package pl.put.poznan.transformer.logic;
 
+/**
+ * Dekorator.
+ * Umożliwia dodanie transformacji zmiany pierwszej litery każego słowa na wielką,
+ * a reszty na małe w tekscie
+ * do obiektu implementującgo interfejs TextTransformer;
+ */
 public class Capitalize extends TextTransformerDecorator {
     public Capitalize(TextTransformer decoratedText) {
         super(decoratedText);
     }
 
+    /**
+     * Zamienia pierwszą literę każdego wyrazu na wielką, a resztę na małe.
+     * @param text tekst poddawany transformacji
+     * @return przetransformowany tekst
+     */
     @Override
     public String transform(String text) {
         return capitalize(super.transform(text)); // + capitalize
