@@ -1,1 +1,10 @@
+pl\put\poznan\transformer\logic\ShortcutsTest.class
+pl\put\poznan\transformer\logic\SimpleTextTest.class
+pl\put\poznan\transformer\logic\LatexTest.class
+pl\put\poznan\transformer\logic\CapitalizeTest.class
+pl\put\poznan\transformer\logic\InverseTest.class
 pl\put\poznan\transformer\logic\NumberTransformerTest.class
+pl\put\poznan\transformer\logic\RemoveDuplicatesTest.class
+pl\put\poznan\transformer\logic\LowerCaseTest.class
+pl\put\poznan\transformer\logic\UpperCaseTest.class
+pl\put\poznan\transformer\logic\NumberToWordsTest.class

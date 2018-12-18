@@ -1,5 +1,17 @@
+pl\put\poznan\transformer\logic\Inverse.class
+pl\put\poznan\transformer\logic\RemoveDuplicates.class
+pl\put\poznan\transformer\logic\SimpleText.class
 pl\put\poznan\transformer\logic\NumberTransformer.class
 pl\put\poznan\transformer\logic\NumberArray.class
+pl\put\poznan\transformer\logic\NumberToWords.class
+pl\put\poznan\transformer\logic\DictonaryLoader.class
+pl\put\poznan\transformer\logic\TextTransformerDecorator.class
+pl\put\poznan\transformer\logic\LowerCase.class
+pl\put\poznan\transformer\logic\Latex.class
+pl\put\poznan\transformer\logic\ExtendShortcut.class
+pl\put\poznan\transformer\logic\Capitalize.class
+pl\put\poznan\transformer\logic\Shorten.class
 pl\put\poznan\transformer\app\TextTransformerApplication.class
+pl\put\poznan\transformer\logic\UpperCase.class
 pl\put\poznan\transformer\rest\TextTransformerController.class
 pl\put\poznan\transformer\logic\TextTransformer.class
