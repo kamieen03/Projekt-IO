@@ -25,7 +25,7 @@ public class Shorten extends TextTransformerDecorator {
     public String toShortcut(String fullForm){
 
         Optional<String> shortcut =  shortcutsMap.entrySet().stream()
-                .filter(s -> s.getValue().equals(fullForm.toLowerCase()))
+                .filter(s -> s.getValue().toLowerCase().equals(fullForm.toLowerCase()))
                 .map(Map.Entry::getKey)
                 .findFirst();
 
