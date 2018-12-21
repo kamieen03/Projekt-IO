@@ -62,6 +62,7 @@ public class TextTransformerController {
                     break;
                 case "toLatex": transformer = new Latex(transformer);
                     break;
+                case "formatBlankSigns": transformer = new BlankSignsFormater(transformer);
             }
         }
         return transformer;

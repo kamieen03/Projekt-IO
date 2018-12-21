@@ -1,7 +1,7 @@
 package pl.put.poznan.transformer.logic;
 
 /**
- * Obiekt zwracający czysty, nieprzetransformowany tekst.
+ * Obiekt zwracający nieprzetransformowany tekst.
  * Przy użyciu dekoratorów(Capitalize, Inverse...) można nałożyć dodatkowe transformacje.
  */
 public class SimpleText implements TextTransformer{
