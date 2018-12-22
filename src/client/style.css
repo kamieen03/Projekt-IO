@@ -96,4 +96,12 @@ textarea{
 	background-color: #E5E5E5;
 	color: black;
 }
+.dropdown{
+	display: inline-block;
+}
+
+#lang select{
+	width: 100px;
+	height: 500px;
+}
 

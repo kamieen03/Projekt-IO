@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="scripts/rangyinputs-jquery-src.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Roboto+Mono:700&amp;subset=latin-ext" rel="stylesheet">
 </head>
-<body>
+<body onload="createSelect('lang')">
 	<div class = "container">
 		
 		<div class = "topbar">
@@ -54,6 +54,14 @@
 			<button type="button" onclick="GET('toShortcuts')">Shorten</button>
 			<button type="button" onclick="GET('toLatex')">To Latex</button>
 			<button type="button" onclick="GET('formatBlankSigns')">Format blank</button>
+			<button type="button" onclick="translate()">Translate</button>
+
+			<div class="dropdown">
+				<select id="lang">
+
+				</select>
+
+			</div>
 
 
 		</div>

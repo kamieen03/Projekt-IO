@@ -1,3 +1,4 @@
+
 function GET(param){
     var sel = $("#textarea").getSelection().text;
     fetch('http://localhost:8080/' + sel + "/?transforms=" + param)
@@ -9,6 +10,7 @@ function GET(param){
         });
 }
 
+// checkboxes params
 var expanded = false;
 var checked = 0;
 
@@ -33,8 +35,8 @@ function showCheckboxes() {
     }
 }
 
+// add listeners to checkboxes
 var checkboxes = document.getElementById("checkboxes").getElementsByTagName("input");
-
 for(i=0; i < checkboxes.length; i++)
     checkboxes.item(i).addEventListener("click", multiTransform);
 
@@ -79,3 +81,44 @@ $(document).delegate('#textarea', 'keydown', function(e) {
             this.selectionEnd = start + 1;
     }
 });
+
+var langnames = ["Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Azerbaijani", "Basque", "Belarusian",
+    "Bengali", "Bosnian", "Bulgarian", "Catalan", "Cebuano", "Chichewa", "Chinese (Simplified)",
+    "Chinese (Traditional)", "Corsican", "Croatian", "Czech", "Danish", "Dutch", "English", "Esperanto", "Estonian",
+    "Filipino", "Finnish", "French", "Frisian", "Galician", "Georgian", "German", "Greek", "Gujarati", "Haitian Creole",
+    "Hausa", "Hawaiian", "Hebrew", "Hindi", "Hmong", "Hungarian", "Icelandic", "Igbo", "Indonesian", "Irish", "Italian",
+    "Japanese", "Javanese", "Kannada", "Kazakh", "Khmer", "Korean", "Kurdish (Kurmanji)", "Kyrgyz", "Lao", "Latin",
+    "Latvian", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy", "Malay", "Malayalam", "Maltese", "Maori",
+    "Marathi", "Mongolian", "Myanmar (Burmese)", "Nepali", "Norwegian", "Pashto", "Persian", "Polish", "Portuguese",
+    "Punjabi", "Romanian", "Russian", "Samoan", "Scots Gaelic", "Serbian", "Sesotho", "Shona", "Sindhi", "Sinhala",
+    "Slovak", "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili", "Swedish", "Tajik", "Tamil", "Telugu", "Thai",
+    "Turkish", "Ukrainian", "Urdu", "Uzbek", "Vietnamese", "Welsh", "Xhosa", "Yiddish", "Yoruba", "Zulu"];
+
+var langcodes = ["af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "ny", "zh", "zh-TW", "co",
+    "hr", "cs", "da", "nl", "en", "eo", "et", "tl", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "iw",
+    "hi", "hmn", "hu", "is", "ig", "id", "ga", "it", "ja", "jw", "kn", "kk", "km", "ko", "ku", "ky", "lo", "la", "lv", "lt",
+    "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ps", "fa", "pl", "pt", "pa", "ro", "ru",
+    "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tg", "ta", "te", "th", "tr",
+    "uk", "ur", "uz", "vi", "cy", "xh", "yi", "yo", "zu"];
+
+
+function createSelect(id) {
+    // get select with id
+    var select = document.getElementById(id);
+    var option;
+
+    for(i = 0; i < langcodes.length; i++){
+
+        // create single option
+        option = document.createElement("option");
+        option.text = langnames[i];
+        option.value = langcodes[i];
+
+        // add option to select
+        select.add(option);
+    }
+}
+
+function translate(){
+    GET("translate," + document.getElementById("lang").value);
+}

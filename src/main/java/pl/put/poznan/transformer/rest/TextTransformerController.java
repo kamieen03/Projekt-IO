@@ -42,8 +42,8 @@ public class TextTransformerController {
 
     private TextTransformer buildTransformer(String[] transforms){
         TextTransformer transformer = new SimpleText();
-        for (String t: transforms){
-            switch (t){
+        for (int i = 0; i < transforms.length; i++){
+            switch (transforms[i]){
                 case "upper": transformer = new UpperCase(transformer);
                     break;
                 case "lower": transformer = new LowerCase(transformer);
@@ -63,6 +63,8 @@ public class TextTransformerController {
                 case "toLatex": transformer = new Latex(transformer);
                     break;
                 case "formatBlankSigns": transformer = new BlankSignsFormater(transformer);
+                    break;
+                case "translate": transformer = new Translator(transformer,transforms[i+1]);
             }
         }
         return transformer;
