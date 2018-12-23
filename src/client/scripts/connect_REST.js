@@ -1,4 +1,3 @@
-
 function GET(param){
     var sel = $("#textarea").getSelection().text;
     fetch('http://localhost:8080/' + sel + "/?transforms=" + param)
@@ -9,6 +8,7 @@ function GET(param){
             $("#textarea").replaceSelectedText(text);
         });
 }
+
 
 // checkboxes params
 var expanded = false;
@@ -35,6 +35,7 @@ function showCheckboxes() {
     }
 }
 
+
 // add listeners to checkboxes
 var checkboxes = document.getElementById("checkboxes").getElementsByTagName("input");
 for(i=0; i < checkboxes.length; i++)
@@ -52,6 +53,7 @@ function multiTransform(){
             document.getElementById("lb1").innerHTML = "Choose...";
     }
 }
+
 
 function multipleGET(checkboxes){
     var params = [];
@@ -81,6 +83,7 @@ $(document).delegate('#textarea', 'keydown', function(e) {
             this.selectionEnd = start + 1;
     }
 });
+
 
 var langnames = ["Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian", "Azerbaijani", "Basque", "Belarusian",
     "Bengali", "Bosnian", "Bulgarian", "Catalan", "Cebuano", "Chichewa", "Chinese (Simplified)",
@@ -119,6 +122,56 @@ function createSelect(id) {
     }
 }
 
+
 function translate(){
     GET("translate," + document.getElementById("lang").value);
 }
+
+
+var lastSearchIndices = [];
+var lastSearchStr;
+var isReplace = false;
+
+function replace(){
+    var input = document.getElementById("find");
+
+    if(isReplace === false){
+        input.value = "";
+        input.placeholder = "replace..."
+        isReplace = true;
+    }
+    else{
+        var $textarea = $('#textarea');
+
+        for(i = 0; i < lastSearchIndices.length; i++){
+            $textarea.setSelection(lastSearchIndices[i], lastSearchIndices[i] + lastSearchStr.length);
+            $textarea.replaceSelectedText(input.value);
+        }
+        input.value = "";
+        input.placeholder ="find..."
+        isReplace = false;
+    }
+}
+
+function find() {
+    var str = document.getElementById("textarea").value;
+    var input = document.getElementById("find");
+
+    lastSearchStr = input.value;
+    lastSearchIndices =  getIndicesOf(lastSearchStr, str);
+}
+
+function getIndicesOf(searchStr, str) {
+    var searchStrLen = searchStr.length;
+    var indices = [];
+
+    if(str.length > 0){
+        var startIndex = 0, index;
+        while((index = str.indexOf(searchStr, startIndex)) > -1){
+            indices.push(index);
+            startIndex = index + searchStrLen;
+        }
+    }
+    return indices;
+}
+

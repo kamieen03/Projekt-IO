@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="style.css" />
 	<script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="scripts/rangyinputs-jquery-src.js"></script>
+	<script type="text/javascript" src="scripts/highlights.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Roboto+Mono:700&amp;subset=latin-ext" rel="stylesheet">
 </head>
 <body onload="createSelect('lang')">
@@ -19,60 +20,53 @@
 
 
 		<div class = "options">
+            <ol>
+                <li>
+                    <div class = "listButton">
+                        <button type="button" id="lb1" onclick="showCheckboxes()" >Choose...</button>
+                        <div id = "checkboxes">
+                            <label for="cb1">
+                                <input type="checkbox" id="cb1" name='upper' />Upper case</label>
+                            <label for="cb2">
+                                <input type="checkbox" id="cb2" name='lower' />Lower case</label>
+                            <label for="cb3">
+                                <input type="checkbox" id="cb3" name='capitalize' />Capitalize</label>
+                            <label for="cb4">
+                                <input type="checkbox" id="cb4" name='inverse' />Inverse</label>
+                            <label for="cb5">
+                                <input type="checkbox" id="cb5" name='nr_to_words' />Nr to words</label>
+                            <label for="cb6">
+                                <input type="checkbox" id="cb6" name='removeDuplicatedWords'/>No duplicates</label>
+                            <label for="cb7">
+                                <input type="checkbox" id="cb7" name='extendShortcuts' />Shortcuts</label>
+                            <label for="cb8">
+                                <input type="checkbox" id="cb8" name='toShortcuts'/>Shorten</label>
+                            <label for="cb9">
+                                <input type="checkbox" id="cb9" name='toLatex'/>To Latex</label>
+                        </div>
+                    </div>
+                </li
+                ><li>
+                    <button type="button" onclick="GET('formatBlankSigns')">Format Blank</button>
+                </li
 
-			<div class = "listButton">
-				<button type="button" id="lb1" onclick="showCheckboxes()" >Choose...</button>
-				<div id = "checkboxes">
-					<label for="cb1">
-						<input type="checkbox" id="cb1" name='upper' />Upper case</label>
-					<label for="cb2">
-						<input type="checkbox" id="cb2" name='lower' />Lower case</label>
-					<label for="cb3">
-						<input type="checkbox" id="cb3" name='capitalize' />Capitalize</label>
-					<label for="cb4">
-						<input type="checkbox" id="cb4" name='inverse' />Inverse</label>
-					<label for="cb5">
-						<input type="checkbox" id="cb5" name='nr_to_words' />Numbers to words</label>
-					<label for="cb6">
-						<input type="checkbox" id="cb6" name='removeDuplicatedWords'/>Remove duplicates</label>
-					<label for="cb7">
-						<input type="checkbox" id="cb7" name='extendShortcuts' />NExtend shortcuts</label>
-					<label for="cb8">
-						<input type="checkbox" id="cb8" name='toShortcuts'/>Shorten</label>
-					<label for="cb9">
-						<input type="checkbox" id="cb9" name='toLatex'/>To Latex</label>
-				</div>
-			</div>
+                ><li>
+                    <div class="connected">
+                        <button type="button" onclick="translate()">T</button><select id="lang"></select>
+                    </div>
+                </li
 
-			<button type="button" onclick="GET('upper')">Upper case</button>
-			<button type="button" onclick="GET('lower')">Lower case</button>
-			<button type="button" onclick="GET('capitalize')">Capitalize</button>
-			<button type="button" onclick="GET('inverse')">Inverse</button>
-			<button type="button" onclick="GET('nr_to_words')">Numbers to words</button>
-			<button type="button" onclick="GET('removeDuplicatedWords')">Remove duplicates</button>
-			<button type="button" onclick="GET('extendShortcuts')">Extend shortcuts</button>
-			<button type="button" onclick="GET('toShortcuts')">Shorten</button>
-			<button type="button" onclick="GET('toLatex')">To Latex</button>
-			<button type="button" onclick="GET('formatBlankSigns')">Format blank</button>
-			<button type="button" onclick="translate()">Translate</button>
-
-			<div class="dropdown">
-				<select id="lang">
-
-				</select>
-
-			</div>
-
-
+                ><li>
+                    <div class="connected">
+                        <button onclick="find()">F</button><button onclick="replace()">R</button><input type="text" placeholder="find..." id="find">
+                    </div>
+                </li>
+            </ol>
 		</div>
-
 
 		<div class = "editor" id = "ppp">
-
-			<textarea id="textarea" autofocus>
-			</textarea>
+			<textarea id="textarea" autofocus></textarea>
 		</div>
-
 
 	</div>
 
