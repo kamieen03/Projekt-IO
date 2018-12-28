@@ -24,16 +24,16 @@ public class NumberToWordsTest {
     @Test
     public void tranform(){
         String[] words = {"1 , 2",
-                "-2| 3",
-                "7; 2.6 ,0.9",
-                "0.03;9;9",
+                "-2 | 3",
+                "7 ; 2.6 , 0.9",
+                "0.03 ; 9 ; 9",
                 "63 ; 123",
                 "0 3   5"
         };
         String[] expected = {"jeden , dwa",
-                "minus dwa| trzy",
-                "siedem; dwa i sześć dziesiątych ,dziewięć dziesiątych",
-                "trzy setne;dziewięć;dziewięć",
+                "minus dwa | trzy",
+                "siedem ; dwa i sześć dziesiątych , dziewięć dziesiątych",
+                "trzy setne ; dziewięć ; dziewięć",
                 "sześćdziesiąt trzy ; sto dwadzieścia trzy",
                 "zero trzy   pięć"
         };

@@ -64,6 +64,8 @@ public class TextTransformerController {
                     break;
                 case "formatBlankSigns": transformer = new BlankSignsFormater(transformer);
                     break;
+                case "timeToWords": transformer = new HourTransformer(transformer);
+                    break;
                 case "translate": transformer = new Translator(transformer,transforms[i+1]);
             }
         }
