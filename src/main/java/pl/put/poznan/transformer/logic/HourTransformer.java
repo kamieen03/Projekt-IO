@@ -14,6 +14,7 @@ public class HourTransformer  extends TextTransformerDecorator{
 
     @Override
     public String transform(String text) {
+        text = super.transform(text);
         return Arrays.stream(text.split(" "))
                 .map(this::timeToWords)
                 .collect(Collectors.joining(" "));
@@ -28,7 +29,7 @@ public class HourTransformer  extends TextTransformerDecorator{
                 String res = "";
                 if (Integer.valueOf(hour) != 0)
                     res += hourMap.get(hour) + " ";
-                res += (new NumberToWords(new SimpleText())).transform(minutes);
+                res += (new NumberToWords(new SimpleText(), null)).transform(minutes);
                 if (Integer.valueOf(hour) == 0)
                     res += " po północy";
                 return res;

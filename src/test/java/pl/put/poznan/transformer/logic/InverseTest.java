@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class InverseTest {
     private Inverse t = null;
@@ -35,5 +37,24 @@ public class InverseTest {
         for (int i = 0; i < words.length; i++) {
             assertEquals(expected[i], t.transform(words[i]));
         }
+    }
+
+    @Test
+    public void afterCapitalize(){
+        String[] words = {"Kajak", "xD", "Xd", "XD", "FiLip", "wwa"};
+        String[] expected = {"Kajak", "Dx", "Dx", "Dx", "Pilif", "Aww"};
+        Capitalize mock = mock(Capitalize.class);
+        when(mock.transform("Kajak")).thenReturn("Kajak");
+        when(mock.transform("xD")).thenReturn("Xd");
+        when(mock.transform("Xd")).thenReturn("Xd");
+        when(mock.transform("XD")).thenReturn("Xd");
+        when(mock.transform("FiLip")).thenReturn("Filip");
+        when(mock.transform("wwa")).thenReturn("Wwa");
+        Inverse inv = new Inverse(mock);
+        for (int i = 0; i < words.length; i++) {
+            assertEquals(expected[i], inv.transform(words[i]));
+            verify(mock).transform(words[i]);
+        }
+        verify(mock, times(words.length)).transform(anyString());
     }
 }

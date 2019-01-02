@@ -1,5 +1,6 @@
 package pl.put.poznan.transformer.logic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
@@ -17,7 +18,22 @@ public class Shorten extends TextTransformerDecorator {
 
     @Override
     public String transform(String text) {
-        return Arrays.stream(text.split(" "))
+        text = super.transform(text);
+        String[] splitUp = text.split(" ");
+        ArrayList<String> newText = new ArrayList<>();
+        if(splitUp.length == 1) newText.add(splitUp[0]);
+        else {
+            for (int i = 0; i < splitUp.length; i++) {
+                if ( i != splitUp.length - 1 && shortcutsMap.containsValue(splitUp[i] + " " + splitUp[i + 1])) {
+                    newText.add(splitUp[i] + " " + splitUp[i + 1]);
+                    i++;
+                } else {
+                    newText.add(splitUp[i]);
+                }
+            }
+        }
+
+        return Arrays.stream(newText.toArray(new String[newText.size()]))
                 .map(s -> toShortcut(s))
                 .collect(Collectors.joining( " " ));
     }

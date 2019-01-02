@@ -24,7 +24,7 @@ public class NumberTransformer {
      * @return liczba przetransformowana na język polski jako słowa oddzielone
      *         spacjami
      */
-    public static String transform_numbers(String liczba){
+    public String transformNumber(String liczba){
         for (char c : liczba.toCharArray()){
             if (!Character.isDigit(c) && c!='.' && c!='-') return liczba;
         }

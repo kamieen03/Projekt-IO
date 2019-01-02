@@ -52,7 +52,7 @@ public class TextTransformerController {
                     break;
                 case "inverse": transformer = new Inverse(transformer);
                     break;
-                case "nr_to_words": transformer = new NumberToWords(transformer);
+                case "nr_to_words": transformer = new NumberToWords(transformer, null);
                     break;
                 case "removeDuplicatedWords": transformer = new RemoveDuplicates(transformer);
                     break;

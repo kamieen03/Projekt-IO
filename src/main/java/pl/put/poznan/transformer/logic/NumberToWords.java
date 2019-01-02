@@ -4,13 +4,18 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class NumberToWords extends TextTransformerDecorator{
-    public NumberToWords(TextTransformer decoratedText) {
+    private NumberTransformer nt = new NumberTransformer();
+
+    public NumberToWords(TextTransformer decoratedText,
+                         NumberTransformer n) {
         super(decoratedText);
+        if (n != null)
+            nt = n;
     }
 
     @Override
     public String transform(String text) {
-        //return nrToWords(super.transform(text));    // + number to words
+        text = super.transform(text);    // + number to words
         return Arrays.stream(text.split(" "))
                 .map(this::nrToWords)
                 .collect(Collectors.joining(" "));
@@ -18,8 +23,9 @@ public class NumberToWords extends TextTransformerDecorator{
 
 
     private String nrToWords(String text){
-        if(isNumber(text))
-            return NumberTransformer.transform_numbers(text);
+        if(isNumber(text)){
+            return nt.transformNumber(text);
+        }
         return text;
     }
 

@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class LowerCaseTest {
     private LowerCase t = null;
@@ -36,5 +38,22 @@ public class LowerCaseTest {
         for (int i = 0; i < words.length; i++) {
             assertEquals(expected[i], t.transform(words[i]));
         }
+    }
+
+    @Test
+    public void extendCapitalize(){
+        String[] words = {"A r D u I N o", ".XyZ,", "12S4g78U"};
+        String[] expected = {"a r d u i n o", ".xyz,", "12s4g78u"};
+        Capitalize mock = mock(Capitalize.class);
+        when(mock.transform("A r D u I N o")).thenReturn("A r d u i n o");
+        when(mock.transform(".XyZ,")).thenReturn(".xyz,");
+        when(mock.transform("12S4g78U")).thenReturn("12s4g78u");
+        UpperCase up = new UpperCase(mock);
+        LowerCase low = new LowerCase(up);
+        for (int i = 0; i < words.length; i++) {
+            assertEquals(expected[i], low.transform(words[i]));
+            verify(mock).transform(words[i]);
+        }
+        verify(mock, times(words.length)).transform(anyString());
     }
 }

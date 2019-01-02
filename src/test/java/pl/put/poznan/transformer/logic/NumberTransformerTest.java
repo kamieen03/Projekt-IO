@@ -1,9 +1,21 @@
 package pl.put.poznan.transformer.logic;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class NumberTransformerTest {
+    private NumberTransformer nt;
+    @Before
+    public void setUp() throws Exception {
+        nt = new NumberTransformer();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        nt = null;
+    }
 
     @Test
     public void transformIntegers() {
@@ -24,7 +36,7 @@ public class NumberTransformerTest {
                         "cztery tysiące trzysta dwadzieścia jeden"};
         String result;
         for (int i = 0; i < numbers.length; i++) {
-            result = NumberTransformer.transform_numbers(String.valueOf(numbers[i]));
+            result = nt.transformNumber(String.valueOf(numbers[i]));
             assertEquals(names[i], result);
         }
 
@@ -48,7 +60,7 @@ public class NumberTransformerTest {
         };
         String result;
         for (int i = 0; i < numbers.length; i++) {
-            result = NumberTransformer.transform_numbers(String.valueOf(numbers[i]));
+            result = nt.transformNumber(String.valueOf(numbers[i]));
             assertEquals(names[i], result);
         }
     }
