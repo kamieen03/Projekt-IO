@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class RemoveDuplicatesTest {
     private RemoveDuplicates t = null;
@@ -36,6 +38,26 @@ public class RemoveDuplicatesTest {
         for (int i = 0; i < words.length; i++) {
             assertEquals(expected[i], t.transform(words[i]));
         }
+    }
+
+    @Test
+    public void afterUpper(){
+        String[] words = {"a A a", "A a b", "dWa dwa osiem",
+                "jeden dwa trzy Trzy cztery", ". . ."};
+        String[] expected = {"A", "A B", "DWA OSIEM", "JEDEN DWA TRZY CZTERY", "."};
+        Capitalize mock = mock(Capitalize.class);
+        when(mock.transform("a A a")).thenReturn("A A A");
+        when(mock.transform("A a b")).thenReturn("A A B");
+        when(mock.transform("dWa dwa osiem")).thenReturn("DWA DWA OSIEM");
+        when(mock.transform("jeden dwa trzy Trzy cztery"))
+                .thenReturn("JEDEN DWA TRZY TRZY CZTERY");
+        when(mock.transform(". . .")).thenReturn(". . .");
+        RemoveDuplicates inv = new RemoveDuplicates(mock);
+        for (int i = 0; i < words.length; i++) {
+            assertEquals(expected[i], inv.transform(words[i]));
+            verify(mock).transform(words[i]);
+        }
+        verify(mock, times(words.length)).transform(anyString());
     }
 
 }

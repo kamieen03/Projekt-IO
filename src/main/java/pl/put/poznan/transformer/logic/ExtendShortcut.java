@@ -14,6 +14,7 @@ public class ExtendShortcut extends TextTransformerDecorator{
 
     @Override
     public String transform(String text) {
+        text = super.transform(text);
             return Arrays.stream(text.split(" "))
                     .map(s -> toFullForm(s))
                     .collect(Collectors.joining( " "));
@@ -21,7 +22,7 @@ public class ExtendShortcut extends TextTransformerDecorator{
 
     public String toFullForm(String shortcut){
 
-        StringBuilder transformed = new StringBuilder(shortcutsMap.getOrDefault(shortcut.toLowerCase(), shortcut));
+        StringBuilder transformed = new StringBuilder(shortcutsMap.getOrDefault(shortcut, shortcut));
         for (int i = 0; i<shortcut.length()-1; i++){
             if (Character.isUpperCase(shortcut.charAt(i))){
                 transformed.setCharAt(i, shortcut.charAt(i));

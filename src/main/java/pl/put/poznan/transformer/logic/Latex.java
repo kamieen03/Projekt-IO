@@ -14,6 +14,7 @@ public class Latex extends TextTransformerDecorator {
 
     @Override
     public String transform(String text) {
+        text = super.transform(text);
         return text.chars()
                 .mapToObj(s -> (char) s)
                 .map(this::toLatex)
