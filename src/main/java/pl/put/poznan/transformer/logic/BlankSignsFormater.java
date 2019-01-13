@@ -23,9 +23,11 @@ public class BlankSignsFormater extends TextTransformerDecorator {
                     break;
                 case '\n':
                     formated.append('\u00B6');
+                    System.out.println("Jest newline");
                     break;
                 case '\t':
                     formated.append('\u2192');
+                    System.out.println("Jest tab");
                     break;
                 default:
                     formated.append(c);

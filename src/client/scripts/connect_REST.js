@@ -1,11 +1,29 @@
+$( "#textarea" ).keyup( function() {
+    $( "#output_div" ).html( $( this ).val() );
+});
+
+
 function GET(param){
     var sel = $("#textarea").getSelection().text;
-    fetch('http://localhost:8080/' + sel + "/?transforms=" + param)
+    fetch('http://localhost:8080/' + encodeURIComponent(sel) + "/?transforms=" + param)
         .then(function(response) {
             return response.text();
         })
         .then(function(text) {
             $("#textarea").replaceSelectedText(text);
+        });
+}
+
+
+function formatBlank() {
+    var wholeText = document.getElementById("textarea").value;
+    alert('http://localhost:8080/' + encodeURIComponent(wholeText) + "/?transforms=formatBlankSigns")
+    fetch('http://localhost:8080/' + encodeURIComponent(wholeText) + "/?transforms=formatBlankSigns", { mode: "cors"})
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(text) {
+            document.getElementById("textarea").value = text;
         });
 }
 
@@ -154,12 +172,27 @@ function replace(){
 }
 
 function find() {
-    var str = document.getElementById("textarea").value;
+    var textarea = document.getElementById("textarea");
     var input = document.getElementById("find");
 
     lastSearchStr = input.value;
+    str = textarea.value;
+
     lastSearchIndices =  getIndicesOf(lastSearchStr, str);
+
+    if(lastSearchIndices.length > 0){
+        document.getElementById("hl1").innerHTML = applyHighlights(str);
+
+    }
+
 }
+
+function applyHighlights(text) {
+    return text
+        .replace(/\n$/g, '\n\n')
+        // .replace(/[A-Z].*?\b/g, '<mark>$&</mark>');
+}
+
 
 function getIndicesOf(searchStr, str) {
     var searchStrLen = searchStr.length;

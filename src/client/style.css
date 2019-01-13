@@ -90,26 +90,51 @@ ol > li input[type=text]::placeholder{
 	height: calc(100vh - 94px);
 	color: #000000;
 	width: 60%;
+	background-color: #ffffff;
 	margin-left: auto;
 	margin-right: auto;
-	background: #ffffff;
 	border-left: 2px solid #E5E5E5;
 	border-right: 2px solid #E5E5E5;
 }
 
-#textarea{
+#textarea, .highlights, #output_div{
+	position: absolute;
 	border-radius: 0px;
 	overflow: auto;
 	border: none;
 	font-family: 'Chakra Petch', sans-serif;
 	outline: none;
 	margin: 75px;
-	width: calc(100% - 150px);
-	height: calc(100% - 159px);
+	width:  calc(60% - 150px);
+	/*width: calc(100% - 150px);*/
+	/*height: calc(100% - 159px);*/
+	height: calc(100vh - 234px);
+	background-color: transparent;
+	z-index: 1500;
 }
 
 ::selection{
 	background: #E5E5E5;
+}
+
+#output_div {
+	white-space: pre-wrap;
+	color: transparent;
+	z-index: 500;
+}
+
+.highlights {
+	width:  calc(60% - 150px);
+	height: calc(100vh - 234px);
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	color: transparent;
+}
+
+mark {
+	z-index: 1000;
+	color: transparent;
+	background-color: #FE5F55; /* or whatever */
 }
 
 #checkboxes {

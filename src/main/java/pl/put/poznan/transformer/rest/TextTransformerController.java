@@ -6,13 +6,13 @@ import pl.put.poznan.transformer.logic.*;
 
 import java.util.Arrays;
 
-@CrossOrigin
+
 @RestController
+@CrossOrigin
 @RequestMapping("/{text}/")
 public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
-
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public String get(@PathVariable String text,
