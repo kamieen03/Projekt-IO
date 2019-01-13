@@ -17,7 +17,6 @@ function GET(param){
 
 function formatBlank() {
     var wholeText = document.getElementById("textarea").value;
-    alert('http://localhost:8080/' + encodeURIComponent(wholeText) + "/?transforms=formatBlankSigns")
     fetch('http://localhost:8080/' + encodeURIComponent(wholeText) + "/?transforms=formatBlankSigns", { mode: "cors"})
         .then(function(response) {
             return response.text();
@@ -155,7 +154,7 @@ function replace(){
 
     if(isReplace === false){
         input.value = "";
-        input.placeholder = "replace..."
+        input.placeholder = "replace...";
         isReplace = true;
     }
     else{
@@ -165,32 +164,34 @@ function replace(){
             $textarea.setSelection(lastSearchIndices[i], lastSearchIndices[i] + lastSearchStr.length);
             $textarea.replaceSelectedText(input.value);
         }
+
         input.value = "";
-        input.placeholder ="find..."
+        input.placeholder ="find...";
         isReplace = false;
+        document.getElementById("hl1").innerHTML = "";
     }
 }
 
 function find() {
-    var textarea = document.getElementById("textarea");
-    var input = document.getElementById("find");
+    if(isReplace === false){
+        var input = document.getElementById("find");
+        lastSearchStr = input.value;
+        var highlights = document.getElementById("hl1");
+        highlights.innerHTML = "";
 
-    lastSearchStr = input.value;
-    str = textarea.value;
+        if(lastSearchStr !== ""){
+            var str = document.getElementById("textarea").value;
 
-    lastSearchIndices =  getIndicesOf(lastSearchStr, str);
-
-    if(lastSearchIndices.length > 0){
-        document.getElementById("hl1").innerHTML = applyHighlights(str);
-
+            lastSearchIndices =  getIndicesOf(lastSearchStr, str);
+            if(lastSearchIndices.length > 0)
+                highlights.innerHTML = applyHighlights(str, lastSearchStr);
+        }
     }
-
 }
 
-function applyHighlights(text) {
+function applyHighlights(text, replaceStr){
     return text
-        .replace(/\n$/g, '\n\n')
-        // .replace(/[A-Z].*?\b/g, '<mark>$&</mark>');
+        .replace(new RegExp(replaceStr, "ig"), '<mark>$&</mark>');
 }
 
 

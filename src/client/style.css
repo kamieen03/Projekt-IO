@@ -32,7 +32,6 @@ body{
 	background-color: #424242;
 	border-bottom: 2px solid #E5E5E5;
 	text-align: center;
-
 }
 
 ol{
@@ -54,8 +53,14 @@ ol > li button{
 	font-size: 13px;
 	background-color: #213131;
 	color: #FBFEFB;
-
 	font-family: 'Roboto Mono', monospace;
+}
+ol > li button:hover {
+	background-color: #E5E5E5;
+	color: black;
+}
+ol > li button:focus{
+	outline:0;
 }
 
 ol > li select{
@@ -68,6 +73,9 @@ ol > li select{
 	font-family: 'Roboto Mono', monospace;
 }
 
+ol > li select:focus{
+	outline:0;
+}
 
 ol > li input[type=text]{
 	padding: 0;
@@ -80,6 +88,10 @@ ol > li input[type=text]{
 	color: #FBFEFB;
 	margin-right: 40px;
 	font-family: 'Roboto Mono', monospace;
+}
+
+ol > li input[type=text]:focus{
+	outline:0;
 }
 
 ol > li input[type=text]::placeholder{
@@ -98,6 +110,7 @@ ol > li input[type=text]::placeholder{
 }
 
 #textarea, .highlights, #output_div{
+	font-size: 14px;
 	position: absolute;
 	border-radius: 0px;
 	overflow: auto;
@@ -106,8 +119,6 @@ ol > li input[type=text]::placeholder{
 	outline: none;
 	margin: 75px;
 	width:  calc(60% - 150px);
-	/*width: calc(100% - 150px);*/
-	/*height: calc(100% - 159px);*/
 	height: calc(100vh - 234px);
 	background-color: transparent;
 	z-index: 1500;
@@ -145,6 +156,7 @@ mark {
 	font-size: 9px;
 	background-color: #213131;
 	color: #FBFEFB;
+	z-index: 5000;
 }
 
 #checkboxes label {
@@ -175,66 +187,3 @@ mark {
 .connected input[type=text]{
 	border-left: none;
 }
-
-
-
-
-
-
-
-
-
-/*.hwt-container {*/
-	/*height: calc(100vh - 94px);*/
-	/*width: 100%;*/
-	/*display: inline-block;*/
-	/*position: relative;*/
-	/*overflow: hidden !important;*/
-	/*-webkit-text-size-adjust: none !important;*/
-/*}*/
-
-/*.hwt-backdrop {*/
-	/*margin: 75px;*/
-	/*width: calc(100% - 150px);*/
-	/*height: calc(100% - 159px);*/
-	/*position: absolute !important;*/
-	/*top: 0 !important;*/
-	/*right: -99px !important;*/
-	/*bottom: 0 !important;*/
-	/*left: 0 !important;*/
-	/*padding-right: 99px !important;*/
-	/*overflow-x: hidden !important;*/
-	/*overflow-y: auto !important;*/
-/*}*/
-
-/*.hwt-highlights {*/
-	/*font-family: 'Chakra Petch', sans-serif;*/
-	/*width: auto !important;*/
-	/*height: auto !important;*/
-	/*border-color: transparent !important;*/
-	/*white-space: pre-wrap !important;*/
-	/*word-wrap: break-word !important;*/
-	/*color: transparent !important;*/
-	/*overflow: hidden !important;*/
-/*}*/
-
-/*.hwt-input {*/
-	/*display: block !important;*/
-	/*position: relative !important;*/
-	/*margin: 0;*/
-	/*padding: 0;*/
-	/*border-radius: 0;*/
-	/*font: inherit;*/
-	/*overflow-x: hidden !important;*/
-	/*overflow-y: auto !important;*/
-/*}*/
-
-/*.hwt-content {*/
-	/*border: 1px solid;*/
-	/*background: none transparent !important;*/
-/*}*/
-
-/*.hwt-content mark {*/
-	/*padding: 0 !important;*/
-	/*color: inherit;*/
-/*}*/
